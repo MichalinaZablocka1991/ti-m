@@ -22,13 +22,6 @@ public class JobApplication extends BaseTest {
     @Test
     void engineerJobApplication() {
 
-        // Open https://www.ti8m.com/de/career
-        driver.get("https://www.ti8m.com/de/career");
-
-        // Accept cookies
-        WebElement acceptCookies = driver.findElement(By.id("onetrust-accept-btn-handler"));
-        acceptCookies.click();
-
         // Go to Career section
         WebElement career = driver.findElement(By.cssSelector("[data-path='/ti8m-ch/career']"));
         career.click();
@@ -45,7 +38,7 @@ public class JobApplication extends BaseTest {
         // Chose 2nd job offer
         driver.switchTo().frame("iframe-552c1559-9a64-4b42-8c48-d3ea3b7d0396");
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        WebElement firstJob = driver.findElement(By.cssSelector(".job.job-4"));
+        WebElement firstJob = driver.findElement(By.cssSelector(".job.job-3"));
         String text = firstJob.getText();
         System.out.println(text.split("\n")[0]);
         WebElement firstLink = firstJob.findElement(By.partialLinkText(text.split("\n")[0]));
@@ -125,9 +118,9 @@ public class JobApplication extends BaseTest {
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         try {
             WebElement confirmationMessage = driver.findElement(By.xpath("//p[contains(text(),'Bewerbung abgeschickt.\n')]"));
-            System.out.println("Element found!");
+            System.out.println("The job application form was successfully sent!");
         } catch (NoSuchElementException e) {
-            System.out.println("Element not found!");
+            System.out.println("The job application form was not sent!");
         }
     }
 }

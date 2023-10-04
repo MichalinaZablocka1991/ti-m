@@ -16,13 +16,6 @@ public class BrowsingTheWebside extends BaseTest {
     @Test
     void goingToEngineeringSection() {
 
-        // Open https://www.ti8m.com/de/career
-        driver.get("https://www.ti8m.com/de/career");
-
-        // Accept cookies
-        WebElement acceptCookies = driver.findElement(By.id("onetrust-accept-btn-handler"));
-        acceptCookies.click();
-
         // Choose english
         WebElement english = driver.findElement(By.xpath("//a[@aria-label='Englisch']"));
         english.click();
@@ -50,9 +43,9 @@ public class BrowsingTheWebside extends BaseTest {
         String expectedText = "Engineering";
         try {
             Assert.assertEquals(expectedText, actualText);
-            System.out.println("Text match");
+            System.out.println("Navigating to Engineering section was successful");
         } catch (AssertionError e) {
-            System.out.println("Text does not match");
+            System.out.println("Navigating to Engineering section was not successful");
             throw e; // Rethrow the caught exception
         }
     }

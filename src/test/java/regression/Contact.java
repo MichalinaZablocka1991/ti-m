@@ -10,14 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Contact extends BaseTest {
     @Test
-    void engineerJobApplication() {
-
-        // Open https://www.ti8m.com/de/career
-        driver.get("https://www.ti8m.com/de/career");
-
-        // Accept cookies
-        WebElement acceptCookies = driver.findElement(By.id("onetrust-accept-btn-handler"));
-        acceptCookies.click();
+    void contactForm () {
 
         // Choose english
         WebElement english = driver.findElement(By.xpath("//a[@aria-label='Englisch']"));
@@ -65,17 +58,17 @@ public class Contact extends BaseTest {
         WebElement contactdataPrivacyField = driver.findElement(By.name("1e717d49-b478-ea11-a811-000d3a2d0476"));
         contactdataPrivacyField.click();
 
+        // Submit the form
         WebElement contactSubmit = driver.findElement(By.name("submit7a4da9d4-9286-ad22-b24d-c67b590cc4f3"));
         contactSubmit.click();
-
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        // Check if confirmation is visble
         try {
             WebElement messageSent = driver.findElement(By.xpath("//div[@data-submissionresponse='success']"));
-            System.out.println("Element found!");
+            System.out.println("The contact form was successfully sent!");
         } catch (NoSuchElementException e) {
-            System.out.println("Element not found!");
+            System.out.println("The contact form was not sent!!");
         }
 
     }
